@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary 
+        format that VisualStudio will consume) has the ability to run a preprocessor 
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so 
+        it is possible to define includes and macros with the same syntax used 
+        in C++ files. Using this ability of the compiler here, we include some files 
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+	
+
+
+  <!--The Commands section is where we the commands, menus and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidGUnitPkg">
+    <!-- Inside this section we have different sub-sections: one for the menus, another  
+    for the menu groups, one for the buttons (the actual commands), one for the combos 
+    and the last one for the bitmaps used. Each element is identified by a command id that  
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually  
+    called "command set" and is used to group different command inside a logically related  
+    group; your package should define its own command set in order to avoid collisions  
+    with command ids defined by other packages. -->
+
+		<!-- This is the sub-section that defines the menus and toolbars. -->
+		<Menus>
+			<Menu guid="guidGUnitCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+				<Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+				<Strings>
+					<ButtonText>GTest</ButtonText>
+					<CommandName>GTest</CommandName>
+				</Strings>
+			</Menu>			
+		</Menus>
+
+    <!-- In this section you can define new menu groups. A menu group is a container for 
+         other menus or buttons (commands); from a visual point of view you can see the 
+         group as the part of a menu contained between two lines. The parent of a group 
+         must be a menu. -->
+    <Groups>
+			<!--
+      To define a menu group we have to specify its ID, the parent menu and its display priority.
+      In this case we use as parent menu the Tools menu of VS; its ID is defined in vsshlids.h.
+      -->
+			<Group guid="guidGUnitCmdSet" id="RunTestsGroup" priority="0x600">
+				<Parent guid="guidGUnitCmdSet" id="TopLevelMenu"/>
+			</Group>
+			<Group guid="guidGUnitCmdSet" id="TestResultsGroup" priority="0x600">
+				<Parent guid="guidGUnitCmdSet" id="TopLevelMenu"/>
+			</Group>
+    </Groups>
+    
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button 
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority. 
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node or set it to <Icon guid="guidOfficeIcon" id="msotcidNoIcon" /> -->
+
+
+      <Button guid="guidGUnitCmdSet" id="cmdidGUnitTool" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Icon guid="guidImages" id="bmpToolWindow" />
+        <Strings>
+          <CommandName>cmdidGUnitTool</CommandName>
+          <ButtonText>Pryda Unit Testing</ButtonText>
+        </Strings>
+      </Button>
+
+			<Button guid="guidGUnitCmdSet" id="cmdidRunEnabled" priority="0x100" type="Button">
+				<Parent guid="guidGUnitCmdSet" id="RunTestsGroup"/>
+				<Icon guid="guidImages" id="bmpCmdStart"/>
+				<Strings>
+					<ButtonText>Run Enabled</ButtonText>
+				</Strings>
+			</Button>
+
+			<Button guid="guidGUnitCmdSet" id="cmdidDebugEnabled" priority="0x100" type="Button">
+				<Parent guid="guidGUnitCmdSet" id="RunTestsGroup"/>
+				<Icon guid="guidImages" id="bmpCmdDebug"/>
+				<Strings>
+					<ButtonText>Debug Enabled</ButtonText>
+				</Strings>
+			</Button>
+
+			<Button guid="guidGUnitCmdSet" id="cmdidStopRun" priority="0x100" type="Button">
+				<Parent guid="guidGUnitCmdSet" id="RunTestsGroup"/>
+				<Icon guid="guidImages" id="bmpCmdStop"/>
+				<Strings>
+					<ButtonText>Stop</ButtonText>
+				</Strings>
+			</Button>
+			
+			<Button guid="guidGUnitCmdSet" id="cmdidShowResults" priority="0x100" type="Button">
+				<Parent guid="guidGUnitCmdSet" id="TestResultsGroup"/>
+				<Icon guid="guidImages" id="bmpCmdResults"/>
+				<Strings>
+					<ButtonText>Results</ButtonText>
+				</Strings>
+			</Button>
+
+
+		</Buttons>
+   
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others: 
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the 
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used 
+            inside a button definition. An important aspect of this declaration is that the element id 
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+      <Bitmap guid="guidImages" href="Resources\Images_32bit.bmp" usedList="bmpToolWindow, bmpCmdStart, bmpCmdDebug, bmpCmdStop, bmpCmdResults"/>
+		</Bitmaps>
+ 
+  </Commands>
+
+
+	<!--This section is where you can associate a command with a keyboard shortcut; this association is
+  valid within a specific UI context, that is when the shell is inside a specific mode, e.g. during
+  debugging, editing a file or when the user is using a specific designer.-->
+	<KeyBindings>
+		<!-- http://msdn.microsoft.com/en-us/library/bb491775.aspx -->
+		<KeyBinding guid="guidGUnitCmdSet" id="cmdidRunEnabled" editor="guidVSStd97" key1="r" mod1="Control" key2="r" />
+		<KeyBinding guid="guidGUnitCmdSet" id="cmdidDebugEnabled" editor="guidVSStd97" key1="r" mod1="Control" key2="d" />
+		<KeyBinding guid="guidGUnitCmdSet" id="cmdidStopRun" editor="guidVSStd97" key1="r" mod1="Control" key2="s" />
+		<KeyBinding guid="guidGUnitCmdSet" id="cmdidShowResults" editor="guidVSStd97" key1="r" mod1="Control" key2="f" />
+	</KeyBindings>
+
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidGUnitPkg" value="{ce7a7d8d-6c4b-4f9c-b77a-971914537c0b}" />
+    
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidGUnitCmdSet" value="{ffadf28f-7099-46a1-a154-afc866e37545}">
+			<IDSymbol name="RunTestsGroup" value="0x1020" />
+			<IDSymbol name="TestResultsGroup" value="0x1021" />
+			<IDSymbol name="TopLevelMenu" value="0x1022"/>
+			<IDSymbol name="cmdidGUnitTool" value="0x0101" />
+			<IDSymbol name="cmdidRunEnabled" value="0x2001" />
+			<IDSymbol name="cmdidDebugEnabled" value="0x2002" />
+			<IDSymbol name="cmdidStopRun" value="0x2003" />
+			<IDSymbol name="cmdidShowResults" value="0x2004" />
+		</GuidSymbol>
+    
+    <GuidSymbol name="guidImages" value="{62dbaaed-a26a-4ec5-9ff1-0d800ca6c280}" >
+      <IDSymbol name="bmpToolWindow" value="1" />
+			<IDSymbol name="bmpCmdStart" value="2" />
+			<IDSymbol name="bmpCmdDebug" value="3" />
+			<IDSymbol name="bmpCmdStop" value="4" />
+			<IDSymbol name="bmpCmdResults" value="5" />
+		</GuidSymbol>
+  </Symbols>
+
+</CommandTable>

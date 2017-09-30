@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUnit2012", "GUnit\GUnit2012.csproj", "{D93E1F41-5292-4667-A71B-6DFEBBFE524F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC} = {C6224119-7BCA-47DA-B90A-A69D823B44CC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUnitCommon2012", "Common\GUnitCommon2012.csproj", "{C6224119-7BCA-47DA-B90A-A69D823B44CC}"
+EndProject
+Project("{E729F059-12D4-455F-A2A4-FDA8DD25E08A}") = "GUnitInstaller", "GUnitInstaller\GUnitInstaller.isproj", "{B0734B20-E9B3-416B-BABA-1A596AD35DA6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC} = {C6224119-7BCA-47DA-B90A-A69D823B44CC}
+		{D93E1F41-5292-4667-A71B-6DFEBBFE524F} = {D93E1F41-5292-4667-A71B-6DFEBBFE524F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccProjectUniqueName0 = GUnitInstaller\\GUnitInstaller.isproj
+		SccProjectName0 = SurroundSCMScci
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Surround\u0020SCM
+		SccProjectFilePathRelativizedFromConnection0 = GUnitInstaller\\
+		SccProjectUniqueName1 = Common\\GUnitCommon2012.csproj
+		SccProjectName1 = SurroundSCMScci
+		SccLocalPath1 = .
+		SccProvider1 = MSSCCI:Surround\u0020SCM
+		SccProjectFilePathRelativizedFromConnection1 = Common\\
+		SccProjectUniqueName2 = GUnit\\GUnit2012.csproj
+		SccProjectName2 = SurroundSCMScci
+		SccLocalPath2 = .
+		SccProvider2 = MSSCCI:Surround\u0020SCM
+		SccProjectFilePathRelativizedFromConnection2 = GUnit\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D93E1F41-5292-4667-A71B-6DFEBBFE524F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93E1F41-5292-4667-A71B-6DFEBBFE524F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93E1F41-5292-4667-A71B-6DFEBBFE524F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93E1F41-5292-4667-A71B-6DFEBBFE524F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6224119-7BCA-47DA-B90A-A69D823B44CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0734B20-E9B3-416B-BABA-1A596AD35DA6}.Debug|Any CPU.ActiveCfg = Debug
+		{B0734B20-E9B3-416B-BABA-1A596AD35DA6}.Debug|Any CPU.Build.0 = Debug
+		{B0734B20-E9B3-416B-BABA-1A596AD35DA6}.Release|Any CPU.ActiveCfg = Release
+		{B0734B20-E9B3-416B-BABA-1A596AD35DA6}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal
